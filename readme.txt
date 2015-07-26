@@ -1,7 +1,7 @@
 === Cartogiraffe Map ===
 Contributors: cartogiraffe
 Donate link: http://www.cartogiraffe.com/?page=wordpress
-Tags: map, bicycle map, transport map, fahrradkarte, wanderkarte, hiking, hiking map, stadtplan
+Tags: map, bicycle map, transport map, fahrradkarte, wanderkarte, hiking, hiking map, stadtplan, maps, landkarte, öpnv, transit map, buslinien, bahnlinien, bus lines, ferry map, bicycle routes, bike routes, bicycle, bike, biking, hiking, openstreetmap
 Requires at least: 3.0.1
 Tested up to: 4.2.2
 Stable tag: 4.2.2
