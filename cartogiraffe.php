@@ -3,7 +3,7 @@
 Plugin Name: Cartogiraffe Map (Standard, Transport, Bicycle, Hiking)
 Plugin URI: http://www.cartogiraffe.com/?page=wordpress
 Description: Add a map to your blog. Map can be switched between standard view, bicycle view (with cycleways and routes) and transport view. Using Cartogiraffe.com-tiles, based on Openstreetmap-Data.
-Version: 0.1
+Version: 0.2
 Author: Thomas Wendt
 Author URI: http://www.code-wendt.de
 License: GPLv2
