@@ -70,7 +70,7 @@ class Cartogiraffe {
 				kartogiraffe_map'.$this->id.' = L.map("kartogiraffe_map'.$this->id.'").setView(['.$data["center"].'], '.$data["zoom"].');
 				kartogiraffe_id'.$this->id.' = "'.$data["id"].'";
 				kartogiraffe_type'.$this->id.' = "'.$data["type"].'";
-				kartogiraffe_relation'.$this->id.' = "";
+				kartogiraffe_relation'.$this->id.' = "'.$data["relation"].'";
 			</script>
 			<div id="kartogiraffe_info'.$this->id.'">
 				'.htmlspecialchars_decode($data["data"]).'
@@ -108,6 +108,11 @@ class Cartogiraffe {
 				<p><input type="checkbox" onclick="kartogiraffe_lastlatlon<?=$this->id?>='a';cartogiraffeLoad<?=$this->id?>();" id="kartogiraffe_searchfield<?=$this->id?>" value="1" checked=\"checked\" /> <label for="kartogiraffe_searchfield<?=$this->id?>">with searchbox</label> <span class="cartogiraffeAwesome">&#xf002;</span></p>
 				<p><input type="checkbox" onclick="kartogiraffe_lastlatlon<?=$this->id?>='b';cartogiraffeLoad<?=$this->id?>();" id="kartogiraffe_change<?=$this->id?>" value="1" checked=\"checked\" /> <label for="kartogiraffe_change<?=$this->id?>">allow to change maptype</label> <span class="cartogiraffeAwesome">&#xf0ac; &#xf207; &#xf206;</span></p>
 				<p><input type="checkbox" onclick="kartogiraffe_lastlatlon<?=$this->id?>='c';cartogiraffeLoad<?=$this->id?>();" id="kartogiraffe_scroll<?=$this->id?>" value="1" checked=\"checked\" /> <label for="kartogiraffe_scroll<?=$this->id?>">enable zoom by scrollwheel</label> <span class="cartogiraffeAwesome">&#xf00e;</span></p>
+				<p></p>
+				<p><label for="kartogiraffe_relation<?=$this->id?>">Display relation (bike routes, bus lines, boundaries) - based on Openstreetmap-Relations:</p><i>Use % as placeholder, e.g. "Bus 256%" or "%Mauer%weg". Please note: At the moment, <a href="http://wiki.openstreetmap.org/wiki/Super-Relation" target="_blank">super-relations</a> are not supported.</i></label></p>
+				<p id="kartogiraffe_relation_results<?=$this->id?>"></p>
+				<p><input id="kartogiraffe_relation_input<?=$this->id?>" placeholder="Search relations" /><input type="submit" class="cartogiraffeButton cartogiraffeAwesome" onclick="kartogiraffe_search_relation<?=$this->id?>();return false;" value="&#xf002;" /></p>
+				<p><input id="kartogiraffe_relation_id<?=$this->id?>" placeholder="Selected RelationID" /><input type="submit" class="cartogiraffeButton cartogiraffeAwesome" onclick="jQuery('#kartogiraffe_relation_id<?=$this->id?>').val('');kartogiraffe_relation<?=$this->id?>=false;cartogiraffeLoad<?=$this->id?>();return false;" value="&#xf014;" /></p>
 			</div>
 			<script>
 				kartogiraffe_map<?=$this->id?> = L.map('kartogiraffe_map<?=$this->id?>').setView([52.487349160352665, 13.408928317328959], 13);

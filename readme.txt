@@ -1,7 +1,7 @@
 === Cartogiraffe Map ===
 Contributors: cartogiraffe
 Donate link: http://www.cartogiraffe.com/?page=wordpress
-Tags: map, bicycle map, transport map, fahrradkarte, wanderkarte, hiking, hiking map, stadtplan, maps, landkarte, öpnv, transit map, buslinien, bahnlinien, bus lines, ferry map, bicycle routes, bike routes, bicycle, bike, biking, hiking, openstreetmap
+Tags: map, bicycle map, transport map, fahrradkarte, wanderkarte, hiking, hiking map, stadtplan, maps, landkarte, öpnv, transit map, buslinien, bahnlinien, bus lines, ferry map, bicycle routes, bike routes, bicycle, bike, biking, hiking, openstreetmap, shortcode, map shortcode
 Requires at least: 3.0.1
 Tested up to: 4.2.2
 Stable tag: 4.2.2
@@ -23,16 +23,26 @@ Use the shortcode-generator in the article-edit-mode to create shortcodes. You c
 == Installation ==
 
 
-1. Upload the folder "cartogiraffe" within the .zip-file to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+1. Upload the folder "cartogiraffe" within the .zip-file to the `/wp-content/plugins/` directory.
+1a) Alternatively, use "Plugins" => "Install" => "Upload Plugins" in your WP admin panel.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+
+No configuration required, it takes only a minute.
 
 
 == Screenshots ==
 
-1. screenshots/wordpress.png
-2. screenshots/wordpress-frontend.png
+1. The admin panel is easy to use. Choose your location, set map style (symbol buttons with word, bus, bycicle and people)
+2. The output is a searchable (if not deactivated), draggable map.
+3. The cycle map gives helpful infrastructure information. Cycling is permitted on green paths, but forbidden on black ones. Cycleways are red, Cyclepaths gray.
+4. The transport map displays buslines (red), trams (blue), trains and ferries.
+5. The hiking map is perfect for walking and hiking. It displays hiking routes (dotted) and best ways for pedestrians (green).
+6. The Berlin Wall is an example for Openstreetmap-Relations. Highlight Bike-Routes, Bus-Lines, Boundaries etc.
 
 == Changelog ==
+
+= 0.2 =
+Highlight Openstreetmap-Relations in your maps. Show your favourite bike-route, hiking route, busline or the boundaries of your district within the map.
 
 = 0.1 =
 First version - please let me know if you have problems with the plugin.
