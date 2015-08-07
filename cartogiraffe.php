@@ -3,7 +3,7 @@
 Plugin Name: Cartogiraffe Map (Standard, Transport, Bicycle, Hiking)
 Plugin URI: http://www.cartogiraffe.com/?page=wordpress
 Description: Add a map to your blog. Map can be switched between standard view, bicycle view (with cycleways and routes) and transport view. Using Cartogiraffe.com-tiles, based on Openstreetmap-Data.
-Version: 0.2
+Version: 1.0
 Author: Thomas Wendt
 Author URI: http://www.code-wendt.de
 License: GPLv2
@@ -12,6 +12,7 @@ Credits: Leaflet, FontAwesome
 
 $Cartogiraffe = new Cartogiraffe();
 add_action( 'add_meta_boxes', 'cartogiraffe_create' );
+add_action( 'admin_enqueue_scripts', 'colorpicker_create' );
 
 
 function cartogiraffe_create() {
@@ -20,6 +21,16 @@ function cartogiraffe_create() {
 	foreach ($screens as $screen) {
 		add_meta_box( 'IDcartogiraffe_generator', 'Map shortcode generator', array($Cartogiraffe,'cartogiraffe_generator'), $screen, 'normal', 'high' );
 	}
+}
+
+function colorpicker_create( $hook ) {
+	if( is_admin() ) {
+        // Add the color picker css file
+		wp_enqueue_style( 'wp-color-picker' );
+ 
+        // Include our custom jQuery file with WordPress Color Picker dependency
+        wp_enqueue_script( 'custom-script-handle', plugins_url( 'custom-script.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+    }
 }
 
 
@@ -71,6 +82,8 @@ class Cartogiraffe {
 				kartogiraffe_id'.$this->id.' = "'.$data["id"].'";
 				kartogiraffe_type'.$this->id.' = "'.$data["type"].'";
 				kartogiraffe_relation'.$this->id.' = "'.$data["relation"].'";
+				kartogiraffe_relation_color'.$this->id.' = "'.str_replace("#","",$data["relationcolor"]).'";
+				kartogiraffe_relation_width'.$this->id.' = "'.$data["relationwidth"].'";
 			</script>
 			<div id="kartogiraffe_info'.$this->id.'">
 				'.htmlspecialchars_decode($data["data"]).'
@@ -109,10 +122,13 @@ class Cartogiraffe {
 				<p><input type="checkbox" onclick="kartogiraffe_lastlatlon<?=$this->id?>='b';cartogiraffeLoad<?=$this->id?>();" id="kartogiraffe_change<?=$this->id?>" value="1" checked=\"checked\" /> <label for="kartogiraffe_change<?=$this->id?>">allow to change maptype</label> <span class="cartogiraffeAwesome">&#xf0ac; &#xf207; &#xf206;</span></p>
 				<p><input type="checkbox" onclick="kartogiraffe_lastlatlon<?=$this->id?>='c';cartogiraffeLoad<?=$this->id?>();" id="kartogiraffe_scroll<?=$this->id?>" value="1" checked=\"checked\" /> <label for="kartogiraffe_scroll<?=$this->id?>">enable zoom by scrollwheel</label> <span class="cartogiraffeAwesome">&#xf00e;</span></p>
 				<p></p>
+				<h3>Relations</h3>
 				<p><label for="kartogiraffe_relation<?=$this->id?>">Display relation (bike routes, bus lines, boundaries) - based on Openstreetmap-Relations:</p><i>Use % as placeholder, e.g. "Bus 256%" or "%Mauer%weg". Please note: At the moment, <a href="http://wiki.openstreetmap.org/wiki/Super-Relation" target="_blank">super-relations</a> are not supported.</i></label></p>
 				<p id="kartogiraffe_relation_results<?=$this->id?>"></p>
-				<p><input id="kartogiraffe_relation_input<?=$this->id?>" placeholder="Search relations" /><input type="submit" class="cartogiraffeButton cartogiraffeAwesome" onclick="kartogiraffe_search_relation<?=$this->id?>();return false;" value="&#xf002;" /></p>
-				<p><input id="kartogiraffe_relation_id<?=$this->id?>" placeholder="Selected RelationID" /><input type="submit" class="cartogiraffeButton cartogiraffeAwesome" onclick="jQuery('#kartogiraffe_relation_id<?=$this->id?>').val('');kartogiraffe_relation<?=$this->id?>=false;cartogiraffeLoad<?=$this->id?>();return false;" value="&#xf014;" /></p>
+				<p><label for="kartogiraffe_relation_input<?=$this->id?>">Search</label><br /><input id="kartogiraffe_relation_input<?=$this->id?>" placeholder="Search relations" /><input type="submit" class="cartogiraffeButton cartogiraffeAwesome" onclick="kartogiraffe_search_relation<?=$this->id?>();return false;" value="&#xf002;" /></p>
+				<p><label for="kartogiraffe_relation_id<?=$this->id?>">OSM-Relation-ID</label><br /><input id="kartogiraffe_relation_id<?=$this->id?>" placeholder="Selected RelationID" /><input type="submit" class="cartogiraffeButton cartogiraffeAwesome" onclick="jQuery('#kartogiraffe_relation_id<?=$this->id?>').val('');kartogiraffe_relation<?=$this->id?>=false;cartogiraffeLoad<?=$this->id?>();return false;" value="&#xf014;" /></p>
+				<p><label for="kartogiraffe_relation_colorx<?=$this->id?>">Color</label><br /><input id="kartogiraffe_relation_colorx<?=$this->id?>" value="#ff0000" /></p>
+				<p><label for="kartogiraffe_relation_widthx<?=$this->id?>">Line Width (Pixel)</label><br /><input id="kartogiraffe_relation_widthx<?=$this->id?>" size="3" type="number" value="3" onchange="kartogiraffe_relation_width<?=$this->id?>=jQuery(this).val();cartogiraffeLoad<?=$this->id?>();window.setTimeout('cartogiraffeCreateShortCode<?=$this->id?>(true);',400);" /></p>
 			</div>
 			<script>
 				kartogiraffe_map<?=$this->id?> = L.map('kartogiraffe_map<?=$this->id?>').setView([52.487349160352665, 13.408928317328959], 13);
@@ -120,6 +136,8 @@ class Cartogiraffe {
 				kartogiraffe_id<?=$this->id?> = '<?=$this->id?>';
 				kartogiraffe_type<?=$this->id?> = 'standard';
 				kartogiraffe_relation<?=$this->id?> = '';
+				kartogiraffe_relation_color<?=$this->id?> = '';
+				kartogiraffe_relation_width<?=$this->id?> = '';
 			</script>
 		</div>
 		<?

@@ -2,7 +2,7 @@
 Contributors: cartogiraffe
 Donate link: http://www.cartogiraffe.com/?page=wordpress
 Tags: map, bicycle map, transport map, fahrradkarte, wanderkarte, hiking, hiking map, stadtplan, maps, landkarte, öpnv, transit map, buslinien, bahnlinien, bus lines, ferry map, bicycle routes, bike routes, bicycle, bike, biking, hiking, openstreetmap, shortcode, map shortcode
-Requires at least: 3.0.1
+Requires at least: 3.5
 Tested up to: 4.2.2
 Stable tag: 4.2.2
 License: GPLv2 or later
@@ -32,7 +32,7 @@ No configuration required, it takes only a minute.
 
 == Screenshots ==
 
-1. The admin panel is easy to use. Choose your location, set map style (symbol buttons with word, bus, bycicle and people)
+1. Wordpress map plugin: The admin panel is easy to use. Choose your location, set map style (symbol buttons with word, bus, bycicle and people)
 2. The output is a searchable (if not deactivated), draggable map.
 3. The cycle map gives helpful infrastructure information. Cycling is permitted on green paths, but forbidden on black ones. Cycleways are red, Cyclepaths gray.
 4. The transport map displays buslines (red), trams (blue), trains and ferries.
