@@ -41,6 +41,9 @@ No configuration required, it takes only a minute.
 
 == Changelog ==
 
+= 1.0 =
+Change color and line width of relations (countries, cities, bus routes, hiking routes ...)
+
 = 0.2 =
 Highlight Openstreetmap-Relations in your maps. Show your favourite bike-route, hiking route, busline or the boundaries of your district within the map.
 
